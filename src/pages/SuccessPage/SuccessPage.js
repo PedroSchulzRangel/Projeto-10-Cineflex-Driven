@@ -1,4 +1,5 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import selectedSeats from "../../selectedSeats";
 
 export default function SuccessPage() {
 
@@ -14,9 +15,7 @@ export default function SuccessPage() {
 
             <TextContainer>
                 <strong><p>Ingressos</p></strong>
-                <p>Assento 01</p>
-                <p>Assento 02</p>
-                <p>Assento 03</p>
+                {selectedSeats.map((s) => <p key={s}>Assento {s}</p>)}
             </TextContainer>
 
             <TextContainer>
