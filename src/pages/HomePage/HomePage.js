@@ -1,14 +1,38 @@
-import styled from "styled-components"
-import movies from "../../movies"
-import Movie from "../../components/Movie"
+import styled from "styled-components";
+import Movie from "../../components/Movie";
+import { useState ,useEffect } from "react";
+import axios from "axios";
 
 export default function HomePage() {
+    const [moviesList, setMoviesList] = useState([]);
+
+    useEffect(() => {
+        const promise = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
+        promise.then((res) => {
+            console.log(res.data);
+            setMoviesList(res.data);
+        });
+        promise.catch((error) => {
+            console.log(error.response.data);
+            alert("Erro ao carregar lista de filmes do servidor! Tente novamente mais tarde.");
+        });
+    }, []);
+
+    if(moviesList.length === 0){
+        return (
+            <LoadingGif>
+                <img src="https://gifs.eco.br/wp-content/uploads/2021/08/imagens-e-gifs-de-loading-4.gif"
+                 alt="loading-gif" />
+            </LoadingGif>
+        );
+    }
+
     return (
         <PageContainer>
             Selecione o filme
 
             <ListContainer>
-                {movies.map((url,index) => <Movie key={index} picture={url}/>)}
+                {moviesList.map((m,index) => <Movie key={index} picture={m.posterURL} id={m.id}/>)}
             </ListContainer>
 
         </PageContainer>
@@ -33,3 +57,7 @@ const ListContainer = styled.div`
     flex-direction: row;
     padding: 10px;
 `
+const LoadingGif = styled.div`
+    display: flex;
+    justify-content: center;
+`;
