@@ -1,21 +1,46 @@
 import styled from "styled-components";
-import sessions from "../../sessions";
 import Session from "../../components/Session";
 import Footer from "../../components/Footer";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function SessionsPage() {
+
+const {idFilme} = useParams();
+const [sessionData, setSessionData] = useState([]);
+
+useEffect(() => {
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
+    promise.then((res) => {
+        console.log(res.data);
+        setSessionData(res.data.days);
+    });
+    promise.catch((error) => {
+        console.log(error.response.data);
+        alert("Erro ao carregar as sessões deste filme! Tente novamente mais tarde.");
+    });
+},[]);
+
+if(sessionData.length === 0){
+    return (
+        <LoadingGif>
+            <img src="https://gifs.eco.br/wp-content/uploads/2021/08/imagens-e-gifs-de-loading-4.gif"
+             alt="loading-gif" />
+        </LoadingGif>
+    );
+}
 
     return (
         <PageContainer>
             Selecione o horário
             <div>
-               {sessions.map((s,index) => 
+               {sessionData.map((s,index) => 
                <Session
                key={index}
-               dayOfWeek={s.dayOfWeek}
-               dayOfMonth={s.dayOfMonth}
-               firstTime={s.firstTime}
-               secondTime={s.secondTime}/>)}
+               dayOfWeek={s.weekday}
+               dayOfMonth={s.date}
+               times={s.showtimes}/>)}
             </div>
 
             <Footer/>
@@ -38,3 +63,7 @@ const PageContainer = styled.div`
         margin-top: 20px;
     }
 `
+const LoadingGif = styled.div`
+    display: flex;
+    justify-content: center;
+`;

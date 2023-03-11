@@ -1,12 +1,15 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export default function Session({dayOfWeek, dayOfMonth, firstTime, secondTime}){
+export default function Session({dayOfWeek, dayOfMonth, times}){
+
     return (
         <SessionContainer>
         {dayOfWeek} - {dayOfMonth}
         <ButtonsContainer>
-            <button>{firstTime}</button>
-            <button>{secondTime}</button>
+            {times.map((t) => <Link to={`/assentos/${t.id}`} key={t.id}>
+                <button>{t.name}</button>
+                </Link>)}
         </ButtonsContainer>
     </SessionContainer>
     );
