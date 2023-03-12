@@ -1,11 +1,17 @@
-import seats from "../seats";
 import styled from "styled-components";
 import Seat from "./Seat"
 
-export default function Seats (){
+export default function Seats ({seatsMap, idList}){
     return (
         <SeatsContainer>
-              {seats.map((num) => <Seat key={num} num={num}/>)}
+              {seatsMap.map((s) => 
+              <Seat 
+              key={s.id}
+              num={s.name}
+              isAvailable ={s.isAvailable}
+              id={s.id}
+              idList={idList}
+              /> )}
             </SeatsContainer>
     );
 }

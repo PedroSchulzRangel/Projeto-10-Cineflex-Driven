@@ -2,26 +2,66 @@ import styled from "styled-components";
 import Seats from "../../components/Seats";
 import Form from "../../components/Form";
 import Footer from "../../components/Footer";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { backgroundSelectedSeats,
+    borderSelectedSeats,
+    backgroundAvailableSeats,
+    borderAvailableSeats,
+    backgroundUnavailableSeats,
+    borderUnavailableSeats } from "../../colors";
 
 export default function SeatsPage() {
+
+const {idSessao} = useParams();
+const [seatsMap, setSeatsMap] = useState([]);
+const navigate = useNavigate();
+const idList = [];
+
+useEffect(() => {
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`);
+    promise.then((res) => {
+        console.log(res.data);
+        setSeatsMap(res.data.seats);
+    });
+    promise.catch((error) => {
+        console.log(error.response.data);
+        alert("Erro ao carregar o mapa de assentos! Tente novamente mais tarde.");
+        navigate("/");
+    });
+}, []);
+
+    if(seatsMap.length === 0){
+        return (
+            <LoadingGif>
+                <img src="https://gifs.eco.br/wp-content/uploads/2021/08/imagens-e-gifs-de-loading-4.gif"
+                 alt="loading-gif" />
+            </LoadingGif>
+        );
+    }
 
     return (
         <PageContainer>
             Selecione o(s) assento(s)
 
-            <Seats/>
+            <Seats
+            seatsMap ={seatsMap}
+            idList ={idList}
+            />
 
             <CaptionContainer>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle status="Selected"/>
                     Selecionado
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle status="Available" />
                     Disponível
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle status="Unavailable" />
                     Indisponível
                 </CaptionItem>
             </CaptionContainer>
@@ -54,8 +94,18 @@ const CaptionContainer = styled.div`
     margin: 20px;
 `
 const CaptionCircle = styled.div`
-    border: 1px solid blue;         // Essa cor deve mudar
-    background-color: lightblue;    // Essa cor deve mudar
+    border: 1px solid ${props => 
+    props.status === "Selected"?
+    borderSelectedSeats:
+    (props.status === "Available"? 
+    borderAvailableSeats: 
+    borderUnavailableSeats)};
+    background-color: ${props => 
+    props.status === "Selected"?
+    backgroundSelectedSeats:
+    (props.status === "Available"?
+    backgroundAvailableSeats:
+    backgroundUnavailableSeats)};
     height: 25px;
     width: 25px;
     border-radius: 25px;
@@ -70,3 +120,7 @@ const CaptionItem = styled.div`
     align-items: center;
     font-size: 12px;
 `
+const LoadingGif = styled.div`
+    display: flex;
+    justify-content: center;
+`;
