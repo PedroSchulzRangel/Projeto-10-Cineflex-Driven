@@ -1,15 +1,56 @@
 import styled from "styled-components";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function Form (){
+
+export default function Form ({name, setName, cpf, setCpf, idList}){
+
+    const navigate = useNavigate();
+
+    function submitOrder(event){
+
+        event.preventDefault();
+
+        if(idList.length === 0){
+            alert("Selecione pelo menos um assento para continuar sua reserva!");
+            return;
+        }
+        const object = {ids: idList, name: name, cpf: cpf};
+        const promise = axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", object);
+        promise.then((res) => {
+            console.log(res.data);
+            navigate("/sucesso");
+        });
+        promise.catch((error) => {
+            console.log(error.response.data);
+            alert("Erro ao enviar reserva para o servidor! Tente novamente mais tarde.");
+            navigate("/");
+        });
+    }
+
     return (
         <FormContainer>
-        Nome do Comprador:
-        <input placeholder="Digite seu nome..." />
+        <form onSubmit={submitOrder}>
+        <label htmlFor="campoNome">Nome do Comprador:</label>
+        <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+        type="text"
+        id="campoNome"
+        placeholder="Digite seu nome..."
+        required/>
 
-        CPF do Comprador:
-        <input placeholder="Digite seu CPF..." />
+        <label htmlFor="campoCPF">CPF do Comprador:</label>
+        <input
+        value={cpf}
+        onChange={e => setCpf(e.target.value)}
+        type="number"
+        id="campoCPF"
+        placeholder="Digite seu CPF..."
+        required/>
 
-        <button>Reservar Assento(s)</button>
+        <button type="submit">Reservar Assento(s)</button>
+        </form>
     </FormContainer>
     );
 }

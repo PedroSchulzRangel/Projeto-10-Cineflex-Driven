@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import selectedSeats from "../../selectedSeats";
 
-export default function SuccessPage() {
+export default function SuccessPage({name, setName, cpf, setCpf}) {
 
     return (
         <PageContainer>

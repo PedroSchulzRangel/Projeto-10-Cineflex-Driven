@@ -13,7 +13,7 @@ import { backgroundSelectedSeats,
     backgroundUnavailableSeats,
     borderUnavailableSeats } from "../../colors";
 
-export default function SeatsPage() {
+export default function SeatsPage({name, setName, cpf, setCpf}) {
 
 const {idSessao} = useParams();
 const [seatsMap, setSeatsMap] = useState([]);
@@ -66,7 +66,12 @@ useEffect(() => {
                 </CaptionItem>
             </CaptionContainer>
 
-           <Form/>
+           <Form
+           name={name}
+           setName={setName}
+           cpf={cpf}
+           setCpf={setCpf}
+           idList={idList}/>
 
             <Footer/>
 

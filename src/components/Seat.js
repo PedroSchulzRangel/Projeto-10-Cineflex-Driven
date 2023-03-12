@@ -23,8 +23,7 @@ export default function Seat ({num, isAvailable, id, idList}){
                                 idList.splice(index,1);
                             }
                         });
-                }
-                console.log(idList);
+                    }
         }else {
             alert("Esse assento não está disponível");
         }
