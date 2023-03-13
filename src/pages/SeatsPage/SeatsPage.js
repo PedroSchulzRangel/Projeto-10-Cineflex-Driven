@@ -13,12 +13,11 @@ import { backgroundSelectedSeats,
     backgroundUnavailableSeats,
     borderUnavailableSeats } from "../../colors";
 
-export default function SeatsPage({name, setName, cpf, setCpf, seatsList, setSeatsList, seatsName, setSeatsName}) {
+export default function SeatsPage({name, setName, cpf, setCpf, seatsList, setSeatsList, seatsName, setSeatsName, idList, setIdList}) {
 
 const {idSessao} = useParams();
 const [seatsMap, setSeatsMap] = useState([]);
 const navigate = useNavigate();
-const idList = [];
 
 useEffect(() => {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`);
@@ -50,6 +49,7 @@ useEffect(() => {
             <Seats
             seatsMap ={seatsMap}
             idList ={idList}
+            setIdList={setIdList}
             seatsName={seatsName}
             setSeatsName={setSeatsName}
             />
@@ -74,7 +74,8 @@ useEffect(() => {
            setName={setName}
            cpf={cpf}
            setCpf={setCpf}
-           idList={idList}/>
+           idList={idList}
+           />
 
             <FooterSeatsPage seatsList={seatsList}/>
 

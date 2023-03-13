@@ -7,13 +7,14 @@ import { backgroundSelectedSeats,
     borderUnavailableSeats } from "../colors";
 import { useState } from "react";
 
-export default function Seat ({num, isAvailable, id, idList, seatsName, setSeatsName}){
+export default function Seat ({num, isAvailable, id, idList, setIdList, seatsName, setSeatsName}){
 
     const [clickedSeat, setClickedSeat] = useState(false);
     
 
     function selectSeat(){
         const copyOfSeatsName = [...seatsName];
+        const copyOfIdList = [...idList];
 
         if(isAvailable){
 
@@ -21,22 +22,16 @@ export default function Seat ({num, isAvailable, id, idList, seatsName, setSeats
             setClickedSeat(notState);
 
             if(!seatsName.includes(num)){ 
-                idList.push(id);
+                setIdList([...idList, id]);
                 setSeatsName([...seatsName, num]);
 
-                    } else if(notState === false){
-                        //idList.splice(idList.indexOf(id),1);
-                        //idList.forEach((el,index) =>{
-                            //if(el === id){
-                                //idList.splice(index,1);
-                            //}
-                        //});
-                        copyOfSeatsName.splice(copyOfSeatsName.indexOf(num),1);
-                        setSeatsName(copyOfSeatsName);
-                        }
-
-                    console.log(idList);
-                    //console.log(Array.isArray(idList));
+                } else if(notState === false){
+                    
+                    copyOfIdList.splice(copyOfIdList.indexOf(id),1);
+                    copyOfSeatsName.splice(copyOfSeatsName.indexOf(num),1);
+                    setIdList(copyOfIdList);
+                    setSeatsName(copyOfSeatsName);
+                    }
         }else {
             alert("Esse assento não está disponível");
         }
