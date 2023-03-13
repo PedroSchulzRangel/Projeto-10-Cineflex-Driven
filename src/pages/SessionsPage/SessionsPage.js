@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Session from "../../components/Session";
-import Footer from "../../components/Footer";
+import FooterSessionPage from "../../components/FooterSessionPage";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -9,12 +9,14 @@ export default function SessionsPage() {
 
 const {idFilme} = useParams();
 const [sessionData, setSessionData] = useState([]);
+const [session, setSession] = useState({});
 
 useEffect(() => {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
     promise.then((res) => {
         console.log(res.data);
         setSessionData(res.data.days);
+        setSession(res.data);
     });
     promise.catch((error) => {
         console.log(error.response.data);
@@ -43,7 +45,7 @@ if(sessionData.length === 0){
                times={s.showtimes}/>)}
             </div>
 
-            <Footer/>
+            <FooterSessionPage session={session}/>
 
         </PageContainer>
     )

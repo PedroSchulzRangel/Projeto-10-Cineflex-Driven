@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import selectedSeats from "../../selectedSeats";
+import { Link } from "react-router-dom";
 
-export default function SuccessPage({name, setName, cpf, setCpf}) {
+export default function SuccessPage({name, setName, cpf, setCpf, seatsList, seatsName}) {
 
     return (
         <PageContainer>
@@ -9,22 +10,25 @@ export default function SuccessPage({name, setName, cpf, setCpf}) {
 
             <TextContainer>
                 <strong><p>Filme e sessão</p></strong>
-                <p>Tudo em todo lugar ao mesmo tempo</p>
-                <p>03/03/2023 - 14:00</p>
+                <p>{seatsList.movie.title}</p>
+                <p>{seatsList.day.date} - {seatsList.name}</p>
             </TextContainer>
 
             <TextContainer>
                 <strong><p>Ingressos</p></strong>
-                {selectedSeats.map((s) => <p key={s}>Assento {s}</p>)}
+                {seatsName.map((s) => <p key={s}>Assento {s}</p>)}
             </TextContainer>
 
             <TextContainer>
                 <strong><p>Comprador</p></strong>
-                <p>Nome: Letícia Chijo</p>
-                <p>CPF: 123.456.789-10</p>
+                <p>Nome: {name}</p>
+                <p>CPF: {cpf}</p>
             </TextContainer>
 
-            <button>Voltar para Home</button>
+            <Link to="/"><button onClick={() => {
+                setName("");
+                setCpf("");}}
+                >Voltar para Home</button></Link>
         </PageContainer>
     )
 }

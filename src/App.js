@@ -10,6 +10,10 @@ export default function App() {
 
     const [name,setName] = useState("");
     const [cpf,setCpf] = useState("");
+    const [seatsList, setSeatsList] = useState({});
+    const [seatsName, setSeatsName] = useState([]);
+
+    console.log(seatsName);
 
     return (
         <BrowserRouter>
@@ -25,14 +29,20 @@ export default function App() {
                     name={name}
                     setName={setName}
                     cpf={cpf}
-                    setCpf={setCpf}/>} />
+                    setCpf={setCpf}
+                    seatsList={seatsList}
+                    setSeatsList={setSeatsList}
+                    seatsName={seatsName}
+                    setSeatsName={setSeatsName}/>} />
                 <Route
                 path="/sucesso"
                 element={<SuccessPage
                     name={name}
                     setName={setName}
                     cpf={cpf}
-                    setCpf={setCpf}/>} />
+                    setCpf={setCpf}
+                    seatsList={seatsList}
+                    seatsName={seatsName}/>} />
             </Routes>
             
         </BrowserRouter>

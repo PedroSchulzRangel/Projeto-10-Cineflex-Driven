@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Seats from "../../components/Seats";
 import Form from "../../components/Form";
-import Footer from "../../components/Footer";
+import FooterSeatsPage from "../../components/FooterSessionPage";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -13,7 +13,7 @@ import { backgroundSelectedSeats,
     backgroundUnavailableSeats,
     borderUnavailableSeats } from "../../colors";
 
-export default function SeatsPage({name, setName, cpf, setCpf}) {
+export default function SeatsPage({name, setName, cpf, setCpf, seatsList, setSeatsList, seatsName, setSeatsName}) {
 
 const {idSessao} = useParams();
 const [seatsMap, setSeatsMap] = useState([]);
@@ -25,6 +25,7 @@ useEffect(() => {
     promise.then((res) => {
         console.log(res.data);
         setSeatsMap(res.data.seats);
+        setSeatsList(res.data);
     });
     promise.catch((error) => {
         console.log(error.response.data);
@@ -49,6 +50,8 @@ useEffect(() => {
             <Seats
             seatsMap ={seatsMap}
             idList ={idList}
+            seatsName={seatsName}
+            setSeatsName={setSeatsName}
             />
 
             <CaptionContainer>
@@ -73,7 +76,7 @@ useEffect(() => {
            setCpf={setCpf}
            idList={idList}/>
 
-            <Footer/>
+            <FooterSeatsPage seatsList={seatsList}/>
 
         </PageContainer>
     )

@@ -11,6 +11,8 @@ export default function Form ({name, setName, cpf, setCpf, idList}){
 
         event.preventDefault();
 
+        console.log(idList);
+
         if(idList.length === 0){
             alert("Selecione pelo menos um assento para continuar sua reserva!");
             return;

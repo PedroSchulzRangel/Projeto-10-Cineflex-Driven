@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Seat from "./Seat"
 
-export default function Seats ({seatsMap, idList}){
+export default function Seats ({seatsMap, idList, seatsName, setSeatsName}){
     return (
         <SeatsContainer>
               {seatsMap.map((s) => 
@@ -11,6 +11,8 @@ export default function Seats ({seatsMap, idList}){
               isAvailable ={s.isAvailable}
               id={s.id}
               idList={idList}
+              seatsName={seatsName}
+              setSeatsName={setSeatsName}
               /> )}
             </SeatsContainer>
     );
