@@ -38,7 +38,7 @@ export default function Seat ({num, isAvailable, id, idList, setIdList, seatsNam
     }
 
     return (
-            <SeatItem isAvailable={isAvailable}
+            <SeatItem data-test="seat" isAvailable={isAvailable}
             clickedSeat={clickedSeat}
             onClick={selectSeat}>
                 {num}

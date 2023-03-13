@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Movie ({picture, id}){
 
     return (
-        <MovieContainer>
+        <MovieContainer data-test="movie">
             <Link to={`/sessoes/${id}`}>
                 <img src={picture} alt="poster"/>
             </Link>

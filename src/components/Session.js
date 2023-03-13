@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 export default function Session({dayOfWeek, dayOfMonth, times}){
 
     return (
-        <SessionContainer>
+        <SessionContainer data-test="movie-day">
         {dayOfWeek} - {dayOfMonth}
         <ButtonsContainer>
             {times.map((t) => <Link to={`/assentos/${t.id}`} key={t.id}>
-                <button>{t.name}</button>
+                <button data-test="showtime">{t.name}</button>
                 </Link>)}
         </ButtonsContainer>
     </SessionContainer>

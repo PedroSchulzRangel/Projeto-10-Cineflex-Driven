@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function FooterSeatsPage({seatsList}){
     return (
-        <FooterContainer>
+        <FooterContainer data-test="footer">
         <div>
             <img src={seatsList.movie.posterURL} alt="poster" />
         </div>

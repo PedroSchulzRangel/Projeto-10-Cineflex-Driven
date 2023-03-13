@@ -33,6 +33,7 @@ export default function Form ({name, setName, cpf, setCpf, idList}){
         <form onSubmit={submitOrder}>
         <label htmlFor="campoNome">Nome do Comprador:</label>
         <input
+        data-test="client-name"
         value={name}
         onChange={e => setName(e.target.value)}
         type="text"
@@ -42,6 +43,7 @@ export default function Form ({name, setName, cpf, setCpf, idList}){
 
         <label htmlFor="campoCPF">CPF do Comprador:</label>
         <input
+        data-test="client-cpf"
         value={cpf}
         onChange={e => setCpf(e.target.value)}
         type="number"
@@ -49,7 +51,7 @@ export default function Form ({name, setName, cpf, setCpf, idList}){
         placeholder="Digite seu CPF..."
         required/>
 
-        <button type="submit">Reservar Assento(s)</button>
+        <button data-test="book-seat-btn" type="submit">Reservar Assento(s)</button>
         </form>
     </FormContainer>
     );
