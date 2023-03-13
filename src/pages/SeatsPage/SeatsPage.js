@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Seats from "../../components/Seats";
 import Form from "../../components/Form";
-import FooterSeatsPage from "../../components/FooterSessionPage";
+import FooterSeatsPage from "../../components/FooterSeatsPage";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";

@@ -8,7 +8,7 @@ export default function FooterSeatsPage({seatsList}){
         </div>
         <div>
             <p>{seatsList.movie.title}</p>
-            <p>{seatsList.weekday} - {seatsList.name}</p>
+            <p>{seatsList.day.weekday} - {seatsList.name}</p>
             
         </div>
     </FooterContainer>

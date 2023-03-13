@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import selectedSeats from "../../selectedSeats";
 import { Link } from "react-router-dom";
 
 export default function SuccessPage({name, setName, cpf, setCpf, seatsList, seatsName, setSeatsName, setIdList}) {

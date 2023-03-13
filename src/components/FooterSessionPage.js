@@ -4,11 +4,10 @@ export default function FooterSessionPage({session}){
     return (
         <FooterContainer>
         <div>
-            <img src="https://br.web.img3.acsta.net/pictures/19/12/05/16/00/0409486.jpg" alt="poster" />
+            <img src={session.posterURL} alt="poster" />
         </div>
         <div>
-            <p>Mulan</p>
-            
+            <p>{session.title}</p>   
         </div>
     </FooterContainer>
     );
