@@ -28,11 +28,12 @@ export default function SuccessPage({name, setName, cpf, setCpf, seatsList, seat
                 setName("");
                 setCpf("");
                 setIdList([]);
-                setSeatsName([]);}}
+                setSeatsName([]);
+            }}
                 >Voltar para Home</button></Link>
         </PageContainer>
-    )
-}
+    );
+};
 
 const PageContainer = styled.div`
     display: flex;
@@ -61,7 +62,7 @@ const PageContainer = styled.div`
         text-align: center;
         color: #247A6B;
     }
-`
+`;
 const TextContainer = styled.div`
     width: 100%;
     display: flex;
@@ -72,4 +73,4 @@ const TextContainer = styled.div`
         font-weight: bold;
         margin-bottom: 10px;
     }
-`
+`;

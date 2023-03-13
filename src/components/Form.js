@@ -15,7 +15,7 @@ export default function Form ({name, setName, cpf, setCpf, idList}){
             alert("Selecione pelo menos um assento para continuar sua reserva!");
             return;
         }
-        const object = {ids: idList, name: name, cpf: cpf};
+        const object = {ids: idList, name, cpf};
         const promise = axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", object);
         promise.then((res) => {
             console.log(res.data);
@@ -69,4 +69,4 @@ const FormContainer = styled.div`
     input {
         width: calc(100vw - 60px);
     }
-`
+`;

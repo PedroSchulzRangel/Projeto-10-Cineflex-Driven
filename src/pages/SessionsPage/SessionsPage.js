@@ -37,7 +37,7 @@ if(sessionData.length === 0){
         <PageContainer>
             Selecione o horário
             <div>
-               {sessionData.map((s,index) => 
+               {sessionData.map((s,index) =>
                <Session
                key={index}
                dayOfWeek={s.weekday}
@@ -49,7 +49,7 @@ if(sessionData.length === 0){
 
         </PageContainer>
     )
-}
+};
 
 const PageContainer = styled.div`
     display: flex;
@@ -64,7 +64,7 @@ const PageContainer = styled.div`
     div {
         margin-top: 20px;
     }
-`
+`;
 const LoadingGif = styled.div`
     display: flex;
     justify-content: center;

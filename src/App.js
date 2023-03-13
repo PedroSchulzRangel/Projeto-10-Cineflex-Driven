@@ -46,11 +46,10 @@ export default function App() {
                     seatsName={seatsName}
                     setSeatsName={setSeatsName}
                     setIdList={setIdList}/>} />
-            </Routes>
-            
+            </Routes>            
         </BrowserRouter>
     )
-}
+};
 
 const NavContainer = styled.div`
     width: 100%;
@@ -68,4 +67,4 @@ const NavContainer = styled.div`
         text-decoration: none;
         color: #E8833A;
     }
-`
+`;

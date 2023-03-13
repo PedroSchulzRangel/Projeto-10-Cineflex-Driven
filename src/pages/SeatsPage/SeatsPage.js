@@ -81,7 +81,7 @@ useEffect(() => {
 
         </PageContainer>
     )
-}
+};
 
 const PageContainer = styled.div`
     display: flex;
@@ -94,22 +94,22 @@ const PageContainer = styled.div`
     margin-top: 30px;
     padding-bottom: 120px;
     padding-top: 70px;
-`
+`;
 const CaptionContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 300px;
     justify-content: space-between;
     margin: 20px;
-`
+`;
 const CaptionCircle = styled.div`
-    border: 1px solid ${props => 
+    border: 1px solid ${props =>
     props.status === "Selected"?
     borderSelectedSeats:
-    (props.status === "Available"? 
-    borderAvailableSeats: 
+    (props.status === "Available"?
+    borderAvailableSeats:
     borderUnavailableSeats)};
-    background-color: ${props => 
+    background-color: ${props =>
     props.status === "Selected"?
     backgroundSelectedSeats:
     (props.status === "Available"?
@@ -122,13 +122,13 @@ const CaptionCircle = styled.div`
     align-items: center;
     justify-content: center;
     margin: 5px 3px;
-`
+`;
 const CaptionItem = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 12px;
-`
+`;
 const LoadingGif = styled.div`
     display: flex;
     justify-content: center;

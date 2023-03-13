@@ -22,7 +22,7 @@ const SessionContainer = styled.div`
     font-size: 20px;
     color: #293845;
     padding: 0 20px;
-`
+`;
 const ButtonsContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -33,4 +33,4 @@ const ButtonsContainer = styled.div`
     a {
         text-decoration: none;
     }
-`
+`;

@@ -7,7 +7,7 @@ export default function FooterSessionPage({session}){
             <img src={session.posterURL} alt="poster" />
         </div>
         <div>
-            <p>{session.title}</p>   
+            <p>{session.title}</p>
         </div>
     </FooterContainer>
     );
@@ -49,4 +49,4 @@ const FooterContainer = styled.div`
             }
         }
     }
-`
+`;

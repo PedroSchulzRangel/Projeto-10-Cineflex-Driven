@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Seat from "./Seat"
+import Seat from "./Seat";
 
 export default function Seats ({seatsMap, idList, seatsName, setSeatsName, setIdList}){
     return (
         <SeatsContainer>
-              {seatsMap.map((s) => 
-              <Seat 
+              {seatsMap.map((s) =>
+              <Seat
               key={s.id}
               num={s.name}
               isAvailable ={s.isAvailable}
@@ -27,4 +27,4 @@ const SeatsContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-`
+`;

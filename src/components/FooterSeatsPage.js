@@ -9,7 +9,6 @@ export default function FooterSeatsPage({seatsList}){
         <div>
             <p>{seatsList.movie.title}</p>
             <p>{seatsList.day.weekday} - {seatsList.name}</p>
-            
         </div>
     </FooterContainer>
     );
@@ -51,4 +50,4 @@ const FooterContainer = styled.div`
             }
         }
     }
-`
+`;
